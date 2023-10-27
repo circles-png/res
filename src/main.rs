@@ -21,8 +21,8 @@ const TEMPERATURE_COEFFICIENT_COLOURS: [&str; 9] = [
     "black", "brown", "red", "orange", "yellow", "green", "blue", "violet", "grey",
 ];
 
-fn colour(colour: &String) -> ColoredString {
-    (match colour.as_str() {
+fn colour(colour: &str) -> ColoredString {
+    (match colour {
         "black" => |string: &str| string.black(),
         "brown" => |string: &str| string.truecolor(165, 42, 42),
         "red" => |string: &str| string.red(),
