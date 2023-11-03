@@ -145,11 +145,11 @@ fn base(number_of_bands: usize, bands: &[String]) -> Result<u32> {
         if !BASE_COLOURS.contains(&band.as_str()) {
             return Err(anyhow::anyhow!(
                 "Invalid base colour {} {} {} {}{} (expected one of {}, got {})",
-                "(band".dimmed(),
+                "(band".truecolor(128, 128, 128),
                 index + 1,
-                "of".dimmed(),
+                "of".truecolor(128, 128, 128),
                 number_of_bands,
-                ")".dimmed(),
+                ")".truecolor(128, 128, 128),
                 format!("{BASE_COLOURS:?}").green(),
                 band.red()
             ));
@@ -173,15 +173,15 @@ fn multiplier(number_of_bands: usize, bands: &[String]) -> Result<f64> {
     if !MULTIPLIER_COLOURS.contains(&multiplier.as_str()) {
         return Err(anyhow::anyhow!(
             "Invalid multiplier colour {} {} {} {}{} (expected one of {}, got {})",
-            "(band".dimmed(),
+            "(band".truecolor(128, 128, 128),
             match number_of_bands {
                 4 => 3,
                 5 | 6 => 4,
                 _ => unreachable!(),
             },
-            "of".dimmed(),
+            "of".truecolor(128, 128, 128),
             number_of_bands,
-            ")".dimmed(),
+            ")".truecolor(128, 128, 128),
             format!("{MULTIPLIER_COLOURS:?}").green(),
             multiplier.red()
         ));
@@ -209,15 +209,15 @@ fn tolerance(number_of_bands: usize, bands: &[String]) -> Result<f64> {
     if !TOLERANCE_COLOURS.contains(&tolerance.as_str()) {
         return Err(anyhow::anyhow!(
             "Invalid tolerance colour {} {} {} {}{} (expected one of {}, got {})",
-            "(band".dimmed(),
+            "(band".truecolor(128, 128, 128),
             match number_of_bands {
                 4 => 4,
                 5 | 6 => 5,
                 _ => unreachable!(),
             },
-            "of".dimmed(),
+            "of".truecolor(128, 128, 128),
             number_of_bands,
-            ")".dimmed(),
+            ")".truecolor(128, 128, 128),
             format!("{TOLERANCE_COLOURS:?}").green(),
             tolerance
         ));
@@ -235,7 +235,7 @@ fn temperature_coefficient(bands: &[String]) -> Result<f32> {
     if !TEMPERATURE_COEFFICIENT_COLOURS.contains(&temperature_coefficient.as_str()) {
         return Err(anyhow::anyhow!(
             "Invalid temperature coefficient colour {} (expected one of {}, got {})",
-            "(band 6 of 6)".dimmed(),
+            "(band 6 of 6)".truecolor(128, 128, 128),
             format!("{TEMPERATURE_COEFFICIENT_COLOURS:?}").green(),
             temperature_coefficient
         ));
