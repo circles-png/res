@@ -102,37 +102,31 @@ fn main() -> Result<()> {
     match number_of_bands {
         4 | 5 => {
             println!(
-                "Calculated resistance of resistor as {}{}{}{}{}",
-                (f64::from(base) * multiplier)
-                    .to_string()
-                    .truecolor(255, 165, 0),
-                "Ω".truecolor(255, 165, 0),
-                "±".purple(),
-                tolerance.to_string().purple(),
-                "%".purple(),
+                "Calculated resistance of resistor as {} {}
+                                     {}
+                                     {}",
+                format!("{}Ω", f64::from(base) * multiplier).truecolor(255, 165, 0),
+                format!("± {tolerance}%").purple(),
+                format!("{} * {}", f64::from(base), multiplier).truecolor(255, 165, 0),
+                format!("± {}", tolerance * 0.01 * f64::from(base) * multiplier).yellow()
             );
         }
         6 => {
             let temperature_coefficient = temperature_coefficient(&bands)?;
             println!(
-                "Calculated resistance of resistor as: {} {} {}
-                                      {}
-                                      {}",
-                format!(
-                    "{}Ω",
-                    (f64::from(base) * multiplier)
-                        .to_string()
-                        .truecolor(255, 165, 0)
-                )
-                .truecolor(255, 165, 0),
-                format!("± {tolerance}%",).purple(),
+                "Calculated resistance of resistor as {} {} {}
+                                     {}
+                                     {}",
+                format!("{}Ω", f64::from(base) * multiplier).truecolor(255, 165, 0),
+                format!("± {tolerance}%").purple(),
                 format!("(± {temperature_coefficient} ppm/K)").purple(),
                 format!("{} * {}", f64::from(base), multiplier).truecolor(255, 165, 0),
                 format!(
                     "± {} (± {temperature_coefficient} ppm/K)",
                     tolerance * 0.01 * f64::from(base) * multiplier,
                     temperature_coefficient = temperature_coefficient
-                ).yellow()
+                )
+                .yellow()
             );
         }
         _ => unreachable!(),
